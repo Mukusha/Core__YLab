@@ -122,7 +122,52 @@ public class ComplexExamples {
 
         }
 
+        /*
+        Task2
+
+            [3, 4, 2, 7], 10 -> [3, 7] - вывести пару именно в скобках, которые дают сумму - 10
+         */
+        System.out.println();
+        System.out.println("**************************************************");
+        System.out.println();
+        System.out.println("На вход дается массив и число. Вывести пару чисел, которые дают сумму - заданное число.");
+        System.out.println();
+
+        System.out.println(findSum(Arrays.asList(3, 4, 2,7),10));
+
+        assert Arrays.asList(3, 7).equals(findSum(Arrays.asList(3, 4, 2,7),10 ));
+        assert Arrays.asList(6, 4).equals(findSum(Arrays.asList(6, 2, 5,4,1),10 ));
+        assert List.of().equals(findSum(Arrays.asList(103, 71, 22,65,89,90, 13),120 ));
+        assert Arrays.asList(65, 70).equals(findSum(Arrays.asList(65,33,70,-152),135 ));
+        assert Arrays.asList(28, -8).equals(findSum(Arrays.asList(37,28,-14,25,-8),20 ));
+        assert Arrays.asList(-5, -8).equals(findSum(Arrays.asList(-5,28,-14,-8,1),-13 ));
+        assert List.of().equals(findSum(null,13 ));
+
+
     }
+
+    /**
+     * Находит пару чисел в списке mas, которая в сумме дает sum.
+     * @param mas - список чисел
+     * @param sum - искомая сумма
+     * @return пара чисел в сумме дающая sum
+     * */
+    public static  List<Integer> findSum( List<Integer> mas, int sum) {
+        if (mas == null ) {
+            return new ArrayList<>();
+        }
+        Set<Integer> s = new HashSet<>();
+
+        for (Integer m : mas) {
+            int numberFind = sum - m;
+            if (s.contains(numberFind)) {
+                return Arrays.asList(numberFind, m);
+            }
+            s.add(m);
+        }
+        return new ArrayList<>();
+    }
+    
 }
 
 
