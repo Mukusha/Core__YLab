@@ -142,6 +142,27 @@ public class ComplexExamples {
         assert Arrays.asList(-5, -8).equals(findSum(Arrays.asList(-5,28,-14,-8,1),-13 ));
         assert List.of().equals(findSum(null,13 ));
 
+        /*
+        Task3
+            Реализовать функцию нечеткого поиска
+         */
+
+        System.out.println();
+        System.out.println("**************************************************");
+        System.out.println();
+        System.out.println("Реализовать функцию нечеткого поиска");
+        System.out.println();
+
+        System.out.println("car -> ca6$$#_rtwheel = "+ fuzzySearch("car", "ca6$$#_rtwheel")); // true);
+        assert fuzzySearch("car", "ca6$$#_rtwheel"); // true
+        assert  fuzzySearch("cwhee", "cartwheel"); // true
+        assert fuzzySearch("cwhee", "cartwheel"); // true
+        assert  fuzzySearch("cartwheel", "cartwheel"); // true
+        assert !fuzzySearch("cwheeel", "cartwheel"); // false
+        assert !fuzzySearch("lw", "cartwheel"); // false
+        assert !fuzzySearch("", "cartwheel"); // false
+        assert !fuzzySearch("lw", ""); // false
+        assert fuzzySearch("", ""); // true
     }
 
     /**
@@ -164,6 +185,28 @@ public class ComplexExamples {
             s.add(m);
         }
         return new ArrayList<>();
+    }
+
+    /**
+     * Нечеткий поиск
+     * @param substring - искомая строка
+     * @param str - строка в которой осуществляется поиск
+     * @return boolean в зависимости от того, находятся ли все символы из substring в str
+     * */
+    public static boolean fuzzySearch(String substring, String str){
+        if (substring == null || str==null) {
+            return false;
+        }
+
+        String[] mStr = str.split("");
+        String[] mSub = substring.split("");
+
+        int b=0;
+        for (String s : mStr) {
+            if (s.equals(mSub[b])) b++;
+            if (b == mSub.length) return true;
+        }
+        return false;
     }
 }
 
